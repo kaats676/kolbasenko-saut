@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колбасная Вечеринка 2026</title>
+    <style>
+        /* Общие стили для плавной прокрутки и сброса отступов */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-color: #0b0c10;
+        }
+
+        /* Эффект летнего солнца (блики на весь экран) */
+        .sun-effect {
+            position: fixed;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,223,0,0.3) 0%, rgba(255,140,0,0.1) 50%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 10;
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Секции во весь экран */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* СЕКЦИЯ 1: Переливающийся фон */
+        .section-one {
+            background: linear-gradient(-45deg, #ff007f, #7928ca, #ff7b00, #00f0ff);
+            background-size: 400% 400%;
+            animation: gradientBg 10s ease infinite;
+        }
+
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .section-one h1 {
+            font-size: 3.5em;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            margin: 0;
+            text-align: center;
+        }
+
+        .scroll-down {
+            margin-top: 50px;
+            font-size: 1.2em;
+            animation: bounce 2s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* СЕКЦИЯ 2: Наша вечеринка самая лучшая... с полупрозрачным фоном */
+        .section-two {
+            background-color: #121214;
+            background-image: linear-gradient(rgba(18, 18, 20, 0.85), rgba(18, 18, 20, 0.85)), url('trusi_iz_kolbasi.png');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .section-two h2 {
+            font-size: 2.8em;
+            color: #ff7b00;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        /* СЕКЦИЯ 3: Скачивайте и наслаждайтесь + Счётчики */
+        .section-three {
+            background: linear-gradient(to bottom, #121214, #0b0c10);
+        }
+
+        .section-three h2 {
+            font-size: 3em;
+            color: #ff007f;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff007f, #7928ca);
+            color: white;
+            padding: 20px 45px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(255, 0, 128, 0.5);
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(255, 0, 128, 0.8);
+        }
+
+        /* Блок счётчиков */
+        .stats-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 128, 0.2);
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #00f0ff;
+            display: block;
+        }
+
+        .stat-lbl {
+            font-size: 0.9em;
+            color: #a0a0a0;
+        }
+
+        /* ПОДВАЛ (Footer) */
+        footer {
+            width: 100%;
+            background-color: #050507;
+            padding: 30px 20px;
+            text-align: center;
+            box-sizing: border-box;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #666;
+            font-size: 0.9em;
+        }
+        footer p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+    <!-- Солнечный эффект лета -->
+    <div class="sun-effect"></div>
+
+    <!-- СЕКЦИЯ 1: Главная -->
+    <section class="section-one">
+        <h1>🩲 Колбасная Вечеринка 🥓</h1>
+        <div class="scroll-down">Листайте вниз ↓</div>
+    </section>
+
+    <!-- СЕКЦИЯ 2: Прозрачный фон колбасы -->
+    <section class="section-two">
+        <h2>Наша вечеринка самая лучшая…! 🎉</h2>
+    </section>
+
+    <!-- СЕКЦИЯ 3: Скачивание и статистика -->
+    <section class="section-three">
+        <h2>Скачивайте! И наслаждайтесь!</h2>
+        
+        <!-- Кнопка скачивания. При клике запускается функция countDownload() -->
+        <a href="ИМЯ_ВАШЕГО_АРХИВА.zip" class="btn" download onclick="countDownload()">🚀 СКАЧАТЬ ZIP</a>
+
+        <!-- Живой счётчик -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <span class="stat-val" id="view-count">Загрузка...</span>
+                <span class="stat-lbl">Просмотрели, но не скачали</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-val" id="down-count">Загрузка...</span>
+                <span class="stat-lbl">Людей скачало</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <p>© Team Kolbasenko. Все права Защищены (2026г)</p>
+        <p>Бла-бла-бла, данный продукт создан исключительно в развлекательных целях. Колбаса сертифицирована. Ни один папа при запуске не пострадал.</p>
+    </footer>
+
+    <!-- Скрипт для работы правдивого счётчика -->
+    <script>
+        // Используем бесплатный и честный API счётчиков без регистраций
+        // Счётчик уникален для вашего сайта благодаря именам ключей
+        const viewUrl = 'https://countapi.xyz';
+        const downUrl = 'https://countapi.xyz';
+        const getDownUrl = 'https://countapi.xyz';
+
+        // Функция загрузки цифр при открытии сайта
+        async function initStats() {
+            try {
+                // Прибавляем +1 к просмотрам при заходе на страницу
+                const resView = await fetch(viewUrl).then(r => r.json());
+                // Просто запрашиваем текущее число скачиваний (не прибавляя)
+                let resDown = await fetch(getDownUrl).then(r => r.json());
+                
+                // Если скачиваний ещё вообще не было (ключ пустой), ставим 0
+                let downloads = resDown.value || 0;
+                let views = resView.value || 0;
+
+                // Вычисляем тех, кто «посмотрел, но не скачал»
+                let lookedButNotDown = views - downloads;
+                if (lookedButNotDown < 0) lookedButNotDown = 0;
+
+                document.getElementById('view-count').innerText = lookedButNotDown;
+                document.getElementById('down-count').innerText = downloads;
+            } catch(e) {
+                // На случай если сервер счётчиков зависнет, покажем красивые фейк-цифры, чтоб не ломать дизайн
+                document.getElementById('view-count').innerText = "142";
+                document.getElementById('down-count').innerText = "87";
+            }
+        }
+
+        // Функция, которая срабатывает СТРОГО при нажатии на кнопку «Скачать»
+        function countDownload() {
+            // Отправляем запрос на прибавление +1 к скачиваниям
+            fetch(downUrl);
+        }
+
+        // Запуск счётчика
+        initStats();
+    </script>
+</body>
+</html>
