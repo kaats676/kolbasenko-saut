@@ -192,7 +192,7 @@
         <h2>Скачивайте! И наслаждайтесь!</h2>
         
         <!-- Кнопка скачивания. При клике запускается функция countDownload() -->
-        <a href="sausage-party-executable.zip" class="btn" download onclick="countDownload()">🚀 СКАЧАТЬ ZIP</a>
+        <a href="ИМЯ_ВАШЕГО_АРХИВА.zip" class="btn" download onclick="countDownload()">🚀 СКАЧАТЬ ZIP</a>
 
         <!-- Живой счётчик -->
         <div class="stats-container">
@@ -213,43 +213,40 @@
         <p>Бла-бла-бла, данный продукт создан исключительно в развлекательных целях. Колбаса сертифицирована. Ни один папа при запуске не пострадал.</p>
     </footer>
 
-    <!-- Скрипт для работы правдивого счётчика -->
+    <!-- Скрипт для автономной интерактивной статистики -->
     <script>
-        // Используем бесплатный и честный API счётчиков без регистраций
-        // Счётчик уникален для вашего сайта благодаря именам ключей
-        const viewUrl = 'https://countapi.xyz';
-        const downUrl = 'https://countapi.xyz';
-        const getDownUrl = 'https://countapi.xyz';
+        // Инициализируем базовые случайные живые значения при первом входе
+        if (!localStorage.getItem('kolbasa_views')) {
+            localStorage.setItem('kolbasa_views', Math.floor(Math.random() * 50) + 120);
+        }
+        if (!localStorage.getItem('kolbasa_downloads')) {
+            localStorage.setItem('kolbasa_downloads', Math.floor(Math.random() * 30) + 60);
+        }
 
-        // Функция загрузки цифр при открытии сайта
-        async function initStats() {
-            try {
-                // Прибавляем +1 к просмотрам при заходе на страницу
-                const resView = await fetch(viewUrl).then(r => r.json());
-                // Просто запрашиваем текущее число скачиваний (не прибавляя)
-                let resDown = await fetch(getDownUrl).then(r => r.json());
-                
-                // Если скачиваний ещё вообще не было (ключ пустой), ставим 0
-                let downloads = resDown.value || 0;
-                let views = resView.value || 0;
+        // При каждом обновлении страницы накручиваем +1 или +2 к просмотрам для эффекта живого сайта
+        let currentViews = parseInt(localStorage.getItem('kolbasa_views')) + Math.floor(Math.random() * 2) + 1;
+        localStorage.setItem('kolbasa_views', currentViews);
 
-                // Вычисляем тех, кто «посмотрел, но не скачал»
-                let lookedButNotDown = views - downloads;
-                if (lookedButNotDown < 0) lookedButNotDown = 0;
+        let currentDownloads = parseInt(localStorage.getItem('kolbasa_downloads'));
 
-                document.getElementById('view-count').innerText = lookedButNotDown;
-                document.getElementById('down-count').innerText = downloads;
-            } catch(e) {
-                // На случай если сервер счётчиков зависнет, покажем красивые фейк-цифры, чтоб не ломать дизайн
-                document.getElementById('view-count').innerText = "142";
-                document.getElementById('down-count').innerText = "87";
-            }
+        function initStats() {
+            // Вычисляем тех, кто «посмотрел, но не нажал скачать»
+            let lookedButNotDown = currentViews - currentDownloads;
+            if (lookedButNotDown < 0) lookedButNotDown = 15;
+
+            document.getElementById('view-count').innerText = lookedButNotDown;
+            document.getElementById('down-count').innerText = currentDownloads;
         }
 
         // Функция, которая срабатывает СТРОГО при нажатии на кнопку «Скачать»
         function countDownload() {
-            // Отправляем запрос на прибавление +1 к скачиваниям
-            fetch(downUrl);
+            currentDownloads += 1;
+            localStorage.setItem('kolbasa_downloads', currentDownloads);
+            
+            // Мгновенно перерисовываем цифры на экране, чтобы клик был виден сразу
+            let lookedButNotDown = currentViews - currentDownloads;
+            document.getElementById('view-count').innerText = lookedButNotDown > 0 ? lookedButNotDown : 0;
+            document.getElementById('down-count').innerText = currentDownloads;
         }
 
         // Запуск счётчика
