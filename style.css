@@ -1,0 +1,99 @@
+/* Плавный скролл и сброс базовых отступов */ 
+html { scroll-behavior: smooth; } 
+body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ffffff; overflow-x: hidden; background-color: #0b0c10; } 
+
+/* 1. Эффект летнего солнца (пульсирующий блик в углу) */ 
+.sun-effect { 
+    position: fixed; 
+    top: -50px; 
+    right: -50px; 
+    width: 300px; 
+    height: 300px; 
+    background: radial-gradient(circle, rgba(255,223,0,0.3) 0%, rgba(255,140,0,0.1) 50%, rgba(0,0,0,0) 70%); 
+    pointer-events: none; 
+    z-index: 10; 
+    animation: pulse 4s infinite alternate; 
+} 
+@keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(1.2); opacity: 1; } } 
+
+/* Базовые настройки для полноэкранных секций */ 
+section { 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 60px 20px; 
+    box-sizing: border-box; 
+    position: relative; 
+} 
+
+/* 2. СЕКЦИЯ 1: Переливающийся психоделический градиент */ 
+.section-one { background: linear-gradient(-45deg, #ff007f, #7928ca, #ff7b00, #00f0ff); background-size: 400% 400%; animation: gradientBg 10s ease infinite; } 
+@keyframes gradientBg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } } 
+
+.section-one h1 { font-size: clamp(2.2em, 5vw, 3.5em); text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); margin: 0; text-align: center; } 
+.scroll-down { margin-top: 50px; font-size: 1.2em; animation: bounce 2s infinite; opacity: 0.8; } 
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } } 
+
+/* 3. СЕКЦИЯ 2: Эффект параллакса с картинкой */ 
+.section-two { 
+    background-color: #121214; 
+    background-image: linear-gradient(rgba(18, 18, 20, 0.85), rgba(18, 18, 20, 0.85)), url('trusi_iz_kolbasi.png'); 
+    background-attachment: fixed; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+} 
+.section-two h2 { font-size: clamp(1.8em, 4vw, 2.8em); color: #ff7b00; text-align: center; max-width: 800px; margin: 0; } 
+
+/* 4. СЕКЦИЯ: Интерактивные карточки мерча */ 
+.section-features { background-color: #0b0c10; } 
+.section-features h2 { font-size: 2.5em; color: #00f0ff; margin-bottom: 40px; text-align: center; } 
+.features-grid { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; max-width: 1100px; width: 100%; } 
+.feature-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 240, 255, 0.2); padding: 30px; border-radius: 20px; width: 280px; text-align: center; transition: 0.3s; } 
+.feature-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.07); border-color: #00f0ff; box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2); } 
+.feature-icon { font-size: 3em; margin-bottom: 15px; display: block; } 
+.feature-card h3 { font-size: 1.5em; color: #fff; margin: 10px 0; } 
+.feature-card p { color: #a0a0a0; font-size: 0.95em; line-height: 1.4; } 
+
+/* 5. СЕКЦИЯ: Расписание хаоса (Таймлайн) */ 
+.section-timeline { background: #121214; } 
+.section-timeline h2 { font-size: 2.5em; color: #ff7b00; margin-bottom: 40px; } 
+.timeline { display: flex; flex-direction: column; gap: 20px; max-width: 600px; width: 100%; } 
+.timeline-item { display: flex; background: rgba(255, 123, 0, 0.05); border-left: 4px solid #ff7b00; padding: 15px 25px; border-radius: 0 15px 15px 0; align-items: center; gap: 20px; } 
+.timeline-time { font-size: 1.4em; font-weight: bold; color: #ff7b00; min-width: 80px; } 
+.timeline-text h3 { margin: 0 0 5px 0; font-size: 1.2em; } 
+.timeline-text p { margin: 0; color: #a0a0a0; font-size: 0.9em; } 
+
+/* 6. СЕКЦИЯ: Отзывы «Свидетелей» */ 
+.section-reviews { background: #0b0c10; } 
+.section-reviews h2 { font-size: 2.5em; color: #ff007f; margin-bottom: 40px; } 
+.reviews-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; max-width: 900px; } 
+.review-box { background: rgba(255, 0, 127, 0.03); border: 1px solid rgba(255, 0, 127, 0.15); padding: 25px; border-radius: 15px; width: 380px; box-sizing: border-box; } 
+.review-text { font-style: italic; color: #e0e0e0; margin-bottom: 15px; line-height: 1.4; } 
+.review-author { color: #ff007f; font-weight: bold; font-size: 0.95em; } 
+
+/* 7. СЕКЦИЯ: Раскрывающийся FAQ (Аккордеон) */ 
+.section-faq { background: #121214; } 
+.section-faq h2 { font-size: 2.5em; color: #7928ca; margin-bottom: 40px; } 
+.faq-container { max-width: 700px; width: 100%; display: flex; flex-direction: column; gap: 15px; } 
+.faq-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(121, 40, 202, 0.2); border-radius: 10px; overflow: hidden; } 
+.faq-question { padding: 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(121, 40, 202, 0.05); transition: 0.3s; } 
+.faq-question:hover { background: rgba(121, 40, 202, 0.15); } 
+.faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; color: #a0a0a0; font-size: 0.95em; line-height: 1.5; } 
+
+/* 8. СЕКЦИЯ 3: Кнопка скачивания и анимированная статистика */ 
+.section-three { background: linear-gradient(to bottom, #121214, #0b0c10); } 
+.section-three h2 { font-size: clamp(1.8em, 4vw, 3em); color: #ff007f; margin-bottom: 10px; text-align: center; } 
+.btn { display: inline-block; background: linear-gradient(45deg, #ff007f, #7928ca); color: white; padding: 20px 45px; font-size: 1.5em; font-weight: bold; text-decoration: none; border-radius: 50px; margin: 30px 0; box-shadow: 0 4px 20px rgba(255, 0, 128, 0.5); transition: 0.3s; cursor: pointer; border: none; text-align: center; } 
+.btn:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(255, 0, 128, 0.8); } 
+
+.stats-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 20px; background: rgba(255, 255, 255, 0.05); padding: 20px 40px; border-radius: 15px; border: 1px solid rgba(255, 0, 128, 0.2); } 
+.stat-box { text-align: center; } 
+.stat-val { font-size: 2.2em; font-weight: bold; color: #00f0ff; display: block; } 
+.stat-lbl { font-size: 0.9em; color: #a0a0a0; } 
+
+/* ПОДВАЛ */ 
+footer { width: 100%; background-color: #050507; padding: 30px 20px; text-align: center; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.05); color: #666; font-size: 0.9em; } 
+footer p { margin: 5px 0; } 
